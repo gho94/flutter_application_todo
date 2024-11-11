@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_todo/model/todo.dart';
-import 'package:flutter_application_todo/screen/list_screen.dart';
 import 'package:flutter_application_todo/view_model/todo_view_model.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -70,11 +70,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               ),
             ),
             ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const ListScreen(),
-                ));
-              },
+              // onPressed: () {
+              //   Navigator.of(context).push(MaterialPageRoute(
+              //     builder: (context) => const ListScreen(),
+              //   ));
+              // },
+              onPressed: () => context.go("/list"),
               child: const Text("리스트 보러 가기"),
             )
           ],
