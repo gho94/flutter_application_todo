@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_todo/model/todo_model.dart';
+import 'package:flutter_application_todo/model/todo.dart';
+import 'package:flutter_application_todo/view_model/todo_view_model.dart';
 import 'package:provider/provider.dart';
 
 class ListScreen extends StatefulWidget {
@@ -16,18 +17,18 @@ class _ListScreenState extends State<ListScreen> {
       appBar: AppBar(
         title: const Text("투두 리스트"),
       ),
-      body: Consumer<TodoModel>(
-        builder: (context, todoModel, child) {
+      body: Consumer<TodoViewModel>(
+        builder: (context, provider, child) {
           return Expanded(
             child: ListView.builder(
-              itemCount: todoModel.todoItems.length,
+              itemCount: provider.todoList.length,
               itemBuilder: (BuildContext context, int index) {
-                final item = todoModel.todoItems[index];
+                final Todo todo = provider.todoList[index];
                 return ListTile(
-                  title: Text(item),
+                  title: Text(todo.todo!),
                   trailing: IconButton(
                       onPressed: () {
-                        Provider.of<TodoModel>(context, listen: false).removeItem(index);
+                        Provider.of<TodoViewModel>(context, listen: false).removeTodo(index);
                       },
                       icon: const Icon(Icons.delete)),
                 );

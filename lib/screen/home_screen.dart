@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_todo/model/todo_model.dart';
+import 'package:flutter_application_todo/model/todo.dart';
 import 'package:flutter_application_todo/screen/list_screen.dart';
+import 'package:flutter_application_todo/view_model/todo_view_model.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -60,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     suffixIcon: IconButton(
                       icon: const Icon(Icons.add),
                       onPressed: () {
-                        Provider.of<TodoModel>(context, listen: false).addItem(_controller.text);
+                        Provider.of<TodoViewModel>(context, listen: false).addTodo(Todo(todo: _controller.text));
                         _controller.clear();
                       },
                     ),
